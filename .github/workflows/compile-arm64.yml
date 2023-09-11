@@ -1,0 +1,15 @@
+name: compile-arm64
+run-name: Compiling for ARM64
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: uraimo/run-on-arch-action@v2
+        with:
+          arch: aarch64
+          distro: ubuntu22.04
+          run: |
+            gcc -o hello.o hello.c
+            ./hello.o
