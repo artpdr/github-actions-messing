@@ -10,6 +10,9 @@ jobs:
         with:
           arch: aarch64
           distro: ubuntu22.04
+          install: |
+            apt update && \
+            apt install -y --no-install-recommends build-essential
           run: |
             gcc -o hello.o hello.c
             ./hello.o
