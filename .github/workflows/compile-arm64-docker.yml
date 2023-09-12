@@ -10,6 +10,7 @@ jobs:
         with:
           platforms: "arm64"
       - run: docker build -t hello --platform=arm64 .
-      - run: docker run --platform=arm64 --rm hello
-      # Should fail without the platform parameter as it will run as amd64
-      - run: docker run --rm hello
+      - run: mkdir mountpoint
+      - run: docker run -v $(pwd)/mountpoint:/mountpoint --platform=arm64 --rm hello
+      # running hello out of docker should fail as the runner is amd64
+      - run: ./mountpoint/hello.o
