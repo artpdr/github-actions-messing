@@ -1,5 +1,5 @@
-name: compile-arm64
-run-name: Compiling for ARM64
+name: compile-arm64-in-docker
+run-name: Compiling for ARM64 in Docker
 on: [push]
 jobs:
   build:
@@ -9,7 +9,7 @@ jobs:
       - uses: docker/setup-qemu-action@v2
         with:
           platforms: "arm64"
-      - run: docker build -t hello --platform=arm64 docker
+      - run: docker build -t hello --platform=arm64 .
       - run: docker run --platform=arm64 --rm hello
       # Should fail without the platform parameter as it will run as amd64
       - run: docker run --rm hello
