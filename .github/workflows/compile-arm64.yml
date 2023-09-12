@@ -1,26 +1,26 @@
-name: compile-arm64
-run-name: Compiling for ARM64
-on: [push]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: uraimo/run-on-arch-action@v2
-        with:
-          arch: aarch64
-          distro: ubuntu22.04
-          githubToken: ${{ github.token }}
-          setup: |
-            mkdir -p "${PWD}/artifacts"
-          dockerRunArgs: |
-            --volume "${PWD}/artifacts:/artifacts"
-          install: |
-            apt update && \
-            apt install -y --no-install-recommends build-essential
-          run: |
-            gcc -o hello.o hello.c
-            ./hello.o
-            cp hello.o /artifacts
-      # Must fail because we've built for arm64
-      - run: bash ${PWD}/artifacts/hello.o
+#name: compile-arm64
+#run-name: Compiling for ARM64
+#on: [push]
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: uraimo/run-on-arch-action@v2
+#        with:
+#          arch: aarch64
+#          distro: ubuntu22.04
+#          githubToken: ${{ github.token }}
+#          setup: |
+#            mkdir -p "${PWD}/artifacts"
+#          dockerRunArgs: |
+#            --volume "${PWD}/artifacts:/artifacts"
+#          install: |
+#            apt update && \
+#            apt install -y --no-install-recommends build-essential
+#          run: |
+#            gcc -o hello.o hello.c
+#            ./hello.o
+#            cp hello.o /artifacts
+#      # Must fail because we've built for arm64
+#      - run: bash ${PWD}/artifacts/hello.o

@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-COPY hello.c
+COPY hello.c .
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends build-essential \
